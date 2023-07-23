@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+<<<<<<< HEAD
     "blog",
     "single_pages",
+=======
+>>>>>>> 9db7e0f14ca431b9693eaceff4b6023b24bb891c
 ]
 
 MIDDLEWARE = [
@@ -107,11 +110,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
+<<<<<<< HEAD
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_TZ = False
+=======
+TIME_ZONE = "UTC"
+
+USE_I18N = True
+
+USE_TZ = True
+>>>>>>> 9db7e0f14ca431b9693eaceff4b6023b24bb891c
 
 
 # Static files (CSS, JavaScript, Images)
