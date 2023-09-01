@@ -45,7 +45,6 @@ class TestView(TestCase):
         self.assertIn(post_002.title, main_area.text)
         # 3.4. '아직 게시물이 없습니다'라는 문구는 더 이상 나타나지 않는다.
         self.assertNotIn('아직 게시물이 없습니다', main_area.text)
-
     def test_post_detail(self):
         # 1.1. Post가 하나 있다.
         post_001 = Post.objects.create(
