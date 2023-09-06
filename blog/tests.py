@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
-from .models import Post
+from .models import Post, Category
 from django.contrib.auth.models import User
 
 
@@ -9,6 +9,26 @@ class TestView(TestCase):
         self.client = Client()
         self.user_trump = User.objects.create_user(username='trump', password='somepassword')
         self.user_obama = User.objects.create_user(username='obama', password='somepassword')
+        self.category_programming = Category.objects.create(name='programming', slug='programming')
+        self.category_music = Category.objects.create(name='music', slug='music')
+        self.post_001 = Post.objects.create(
+            title='첫 번째 포스트입니다.',
+            content='Hello World. We are the world.',
+            category=self.category_programming,
+            author=self.user_trump
+        )
+        self.post_002 = Post.objects.create(
+            title='두 번째 포스트입니다.',
+            content='1등이 전부는 아니잖아요?',
+            category=self.category_music,
+            author=self.user_obama
+        )
+        self.post_003 = Post.objects.create(
+            title='세 번째 포스트입니다.',
+            content='category가 없을 수도 있죠',
+            author=self.user_obama
+        )
+
 
     def navbar_test(self, soup):
         navbar = soup.nav
