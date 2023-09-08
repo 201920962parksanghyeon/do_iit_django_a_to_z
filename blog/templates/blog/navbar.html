@@ -1,3 +1,4 @@
+{% load socialaccount %}
        <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container">
     <a class="navbar-brand" href="/">Navbar</a>
@@ -15,25 +16,24 @@
           <li class="nav-item">
           <a class="nav-link" href="/about_me/">About Me</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  로그인&회원가입
-</button>
-        </li>
-            </ul>
       </ul>
+    </div>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.username }}
+          </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/accounts/logout/">Log Out</a>
+                </div>
+            </li>
+            {% else %}
+        <li class="nav-item">
+   <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">로그인&회원가입</button>
+        </li>
+          {% endif %}
+        </ul>
                <!-- 네비게이션바 -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -46,7 +46,7 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-md-6">
-                <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="#">구글로 로그인하기</a>
+                <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}">구글로 로그인하기</a>
                 <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/login/">로그인하기</a>
             </div>
             <div class="col-md-6">
